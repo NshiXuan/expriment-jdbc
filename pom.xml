@@ -52,6 +52,13 @@
             <artifactId>commons-beanutils</artifactId>
             <version>1.9.4</version>
         </dependency>
+
+        <!-- jstl: 在jsp中使用for循环 -->
+        <dependency>
+            <groupId>org.glassfish.web</groupId>
+            <artifactId>jakarta.servlet.jsp.jstl</artifactId>
+            <version>1.2.6</version>
+        </dependency>
     </dependencies>
 
 </project>

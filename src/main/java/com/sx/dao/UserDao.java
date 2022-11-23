@@ -3,22 +3,29 @@ package com.sx.dao;
 import com.sx.bean.User;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserDao extends BaseDao {
   /**
    * 获取多个对象
    */
-  public boolean login(User user) {
+  public User login(User user) {
+    List<Object> args = new ArrayList<>();
     String username = user.getUsername();
     String password = user.getPassword();
 
-    if (username == null || password == null) return false;
+    // if (username == null || password == null) return;
+    args.add(username);
+    args.add(password);
+    String sql = "SELECT username,password FROM users WHERE username = ? AND password=?";
+    // System.out.println(tpl.query(sql, new BeanPropertyRowMapper<>(User.class), args.toArray()));
 
-    System.out.println(username + " - " + password);
+
+    // System.out.println(username + " - " + password);
     // String sql = "SELECT username,password FROM users";
     // return tpl.query(sql, new BeanPropertyRowMapper<>(User.class));
-    return true;
+    return (User) tpl.query(sql, new BeanPropertyRowMapper<>(User.class), args.toArray());
   }
 
   public List<User> list() {

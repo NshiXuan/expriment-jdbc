@@ -13,9 +13,10 @@ public class UserServlet extends BaseServlet {
   private UserDao dao = new UserDao();
 
   public void login(HttpServletRequest request, HttpServletResponse response) throws Exception {
-    User user = new User();
-    BeanUtils.populate(user, request.getParameterMap());
-    System.out.println(dao.login(user));
-    request.getRequestDispatcher("/page/goods.jsp").forward(request, response);
+    // User user = new User();
+    // BeanUtils.populate(user, request.getParameterMap());
+    // System.out.println(dao.login(user));
+    response.sendRedirect(request.getContextPath() + "/goods/list");
+    // request.getRequestDispatcher("/page/goods.jsp").forward(request, response);
   }
 }
