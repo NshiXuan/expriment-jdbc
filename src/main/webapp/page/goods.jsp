@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<% request.setAttribute("ctx",request.getContextPath()); %>
 <html>
 <head>
     <title>Title</title>
@@ -15,6 +16,18 @@
     body{
         width: 1200px;
         margin: 0 auto;
+    }
+
+    .nav-bar{
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .nav-bar a{
+        text-decoration: none;
+        margin-right: 10px;
     }
 
     .good{
@@ -38,7 +51,11 @@
     }
 
     .btn{
-
+        background: blue;
+        padding: 10px 0;
+        border: none;
+        border-radius: 5px;
+        color: #fff;
     }
 
     .btn:hover{
@@ -47,6 +64,17 @@
 </style>
 
 <body>
+
+<div class="nav-bar">
+   <div>
+       <a href="${ctx}/goods/list">商品</a>
+       <a href="${ctx}/favors/list">购物车</a>
+       <a href="${ctx}/chats/list">聊天记录</a>
+   </div>
+    <div>
+        <a href="${ctx}/user/logout">退出登录</a>
+    </div>
+</div>
 
 <div class="good">
     <c:forEach items="${goods}" var="good">
