@@ -22,14 +22,94 @@
 <head>
     <title>Title</title>
 </head>
+<style>
+    body,html{
+        height: 100%
+    }
+    body{
+        margin: 0;
+        text-align: center;
+        background-image: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);
+    }
+    input{
+        border: 0;
+        background: #f1ecec;
+        border-radius: 20px;
+        line-height: 40px;
+        padding: 0 20px;
+        font-size: 16px;
+        width: 200px;
+        margin-top:20px ;
+    }
+    input:focus{
+        outline: 0;
+    }
+    button{
+        margin-top: 30px;
+        background: #6495ed;
+        border: 0;
+        border-radius: 20px;
+        line-height: 40px;
+        color: white;
+        width: 200px;
+        font-size: 15px;
+        box-shadow: 0px 2px 10px blue;
+    }
+    button:hover{
+        outline: 0;
+        background: #64a2ed;
+    }
+    .box{
+        display: flex;
+        justify-content: center;
+        flex:1;
+    }
+    .box1{
+        width: 250px;
+        text-align: left;
+        padding-left:30px ;
+    }
+    .check{
+        width: 20px;
+    }
+    .box0{
+        background: white;
+        height: 260px;
+        width: 330px;
+        border-radius: 20px;
+        position:absolute;
+        left:50%;
+        top:50%;
+        margin: -130px 0 0 -165px;
+    }
+
+</style>
 <body>
-    <form action="/ep/user/login" method="post">
-        用户名:<input type="text" name="username"  value="<%=users %>"/><br/>
-        密码:<input type="password" name="password"  value="<%=password %>"/><br/>
-        <br>
-        <input type="submit" value="登录"/>
-        <input type="reset" value="重置"/>
-        <input type="checkbox" name="remember" />保存密码
-    </form>
+    <h1>登录系统</h1>
+    <hr>
+   <div class="box0">
+       <form action="/ep/user/login" method="post">
+           <div class="box2">
+               <label>
+                   用户名:<input type="text" placeholder="用户名" name="username"  value="<%=users %>"/>
+               </label>
+           </div>
+           <div class="box3">
+               <label>
+                  密 码: <input type="password" placeholder="密码" name="password"  value="<%=password %>"/><br/>
+               </label>
+           </div>
+           <div class="box">
+               <div class="box1">
+                   <label>
+                       <input class="check" type="checkbox" name="remember"/> 保存密码
+                   </label>
+               </div>
+           </div>
+           <div>
+               <button>登录</button>
+           </div>
+       </form>
+   </div>
 </body>
 </html>

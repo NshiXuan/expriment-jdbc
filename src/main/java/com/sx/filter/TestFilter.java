@@ -16,11 +16,12 @@ public class TestFilter implements Filter {
         HttpSession session=request0.getSession(true);
         request.setCharacterEncoding("Utf-8");
         response.setCharacterEncoding("Utf-8");
+        System.out.println("过滤器");
         response.setContentType("text/html;charset=Utf-8");
         if(session.getAttribute("username")==null){
             System.out.println("过滤器拦截");
             response0.sendRedirect("/ep/page/LoginFail.jsp");
-        } else if(session.getAttribute("username").equals("施贵洋")){
+        } else if(session.getAttribute("username").equals("谢士钰")){
             System.out.println("过滤器通过");
             chain.doFilter(request,response);
         }
