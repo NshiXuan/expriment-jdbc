@@ -23,6 +23,9 @@
     <title>Title</title>
 </head>
 <style>
+    body,html{
+        height: 100%
+    }
     body{
         margin: 0;
         text-align: center;
@@ -35,7 +38,7 @@
         line-height: 40px;
         padding: 0 20px;
         font-size: 16px;
-        width: 250px;
+        width: 200px;
         margin-top:20px ;
     }
     input:focus{
@@ -64,16 +67,20 @@
     .box1{
         width: 250px;
         text-align: left;
+        padding-left:30px ;
     }
     .check{
         width: 20px;
     }
     .box0{
         background: white;
-        height: 240px;
-        width: 300px;
-        margin: 30px auto;
+        height: 260px;
+        width: 330px;
         border-radius: 20px;
+        position:absolute;
+        left:50%;
+        top:50%;
+        margin: -130px 0 0 -165px;
     }
 
 </style>
@@ -82,14 +89,14 @@
     <hr>
    <div class="box0">
        <form action="/ep/user/login" method="post">
-           <div>
+           <div class="box2">
                <label>
-                   <input type="text" placeholder="用户名" name="username"  value="<%=users %>"/>
+                   用户名:<input type="text" placeholder="用户名" name="username"  value="<%=users %>"/>
                </label>
            </div>
-           <div>
+           <div class="box3">
                <label>
-                   <input type="password" placeholder="密码" name="password"  value="<%=password %>"/><br/>
+                  密 码: <input type="password" placeholder="密码" name="password"  value="<%=password %>"/><br/>
                </label>
            </div>
            <div class="box">

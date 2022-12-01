@@ -5,16 +5,16 @@
   Time: 20:41
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Insert title here</title>
+    <title>登录失败页面</title>
 </head>
 <body>
-<h2>登录失败请重新登录</h2>
-<jsp:include page="/index.jsp" flush="true"/>
+<%--<jsp:include page="/index.jsp" flush="false"/>--%>
+<%@include file="/index.jsp"%>
+<h2>登录失败或未登录访问登录页面</h2>
 </body>
 </html>
+
