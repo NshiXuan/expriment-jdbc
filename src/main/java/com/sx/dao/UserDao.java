@@ -25,7 +25,8 @@ public class UserDao extends BaseDao {
     // System.out.println(username + " - " + password);
     // String sql = "SELECT username,password FROM users";
     // return tpl.query(sql, new BeanPropertyRowMapper<>(User.class));
-    return (User) tpl.query(sql, new BeanPropertyRowMapper<>(User.class), args.toArray());
+    // return (User) tpl.query(sql, new BeanPropertyRowMapper<>(User.class), args.toArray());
+    return user;
   }
 
   public List<User> list() {
