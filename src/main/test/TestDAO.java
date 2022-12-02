@@ -1,4 +1,6 @@
+import com.sx.bean.Chats;
 import com.sx.bean.Favor;
+import com.sx.dao.ChatsDAO;
 import com.sx.dao.FavorsDao;
 import org.junit.Test;
 public class TestDAO {
@@ -21,5 +23,14 @@ public class TestDAO {
         System.out.println(dao.list());
     }
 
+    @Test
+    public void testSendMsg(){
+        Chats msg = new Chats();
+        msg.setUser_id(1);
+        msg.setContent("好好好");
+        ChatsDAO dao = new ChatsDAO();
+        dao.addMsg(msg);
+        System.out.println(dao.getAllChatHistory());
+    }
 
 }

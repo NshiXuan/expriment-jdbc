@@ -13,7 +13,7 @@ public class ChatsDAO extends BaseDao{
     }
 
     public void addMsg(Chats msg){
-        String sql = "insert into chat(content,user_id,createAt) values(?,?,?)";
-        tpl.update(sql,msg.getContent(),msg.getUser_id(),msg.getCreateAt());
+        String sql = "insert into chat(content,user_id) values(?,?)";
+        tpl.update(sql,msg.getContent(),msg.getUser_id());
     }
 }

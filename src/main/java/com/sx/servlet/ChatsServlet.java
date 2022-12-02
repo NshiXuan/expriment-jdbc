@@ -21,7 +21,11 @@ public class ChatsServlet extends BaseServlet {
         req.getRequestDispatcher("/page/chats.jsp").forward(req,resp);
     }
 
-    public void sendMsg(HttpServletRequest req,HttpServletResponse resp){
-
+    public void sendMsg(HttpServletRequest req,HttpServletResponse resp) throws IOException {
+        Chats msg = new Chats();
+        msg.setContent(req.getParameter("content"));
+        msg.setUser_id(Integer.parseInt(req.getParameter("user_id")));
+        dao.addMsg(msg);
+        resp.sendRedirect("/page/chats.jsp");
     }
 }
