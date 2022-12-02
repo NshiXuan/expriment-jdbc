@@ -88,7 +88,7 @@
     <h1>登录系统</h1>
     <hr>
    <div class="box0">
-       <form action="/ep/user/login" method="post">
+       <form action="/ep/user/login" >
            <div class="box2">
                <label>
                    用户名:<input type="text" placeholder="用户名" name="username"  value="<%=users %>"/>

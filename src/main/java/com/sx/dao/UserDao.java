@@ -19,7 +19,9 @@ public class UserDao extends BaseDao {
     args.add(username);
     args.add(password);
     String sql = "SELECT username,password FROM users WHERE username = ? AND password=?";
-    // System.out.println(tpl.query(sql, new BeanPropertyRowMapper<>(User.class), args.toArray()));
+    System.out.println("query" + tpl.query(sql, new BeanPropertyRowMapper<>(User.class), args.toArray()));
+    // User use1 = tpl.query(sql, new BeanPropertyRowMapper<>(User.class), args.toArray());
+    System.out.println();
 
 
     // System.out.println(username + " - " + password);

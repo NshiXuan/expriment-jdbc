@@ -21,15 +21,8 @@ public class UserServlet extends BaseServlet {
   public void login(HttpServletRequest request, HttpServletResponse response) throws Exception {
     User user = new User();
     BeanUtils.populate(user, request.getParameterMap());
-    System.out.println(dao.login(user));
-    response.sendRedirect(request.getContextPath() + "/goods/list");
-    // request.getRequestDispatcher("/page/goods.jsp").forward(request, response);
-  }
+    System.out.println("user"+ dao.login(user));
 
-  @Override
-  protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    request.setCharacterEncoding("UTF-8");
-    response.setContentType("text/html;charset=UTF-8");
     String username = request.getParameter("username");
     String password = request.getParameter("password");
     String remember = request.getParameter("remember");
@@ -38,6 +31,7 @@ public class UserServlet extends BaseServlet {
     PrintWriter out = response.getWriter();
     String []name= new String [] {"农世轩","谢士钰","施贵洋"};
     String []stuID=new String [] {"202021091223","202021093016","202021091221"};
+
     //若用户名和密码正确，则进行后面操作
     if(username.equals(name[0])&&password.equals(stuID[0])||username.equals(name[1])&&password.equals(stuID[1])||username.equals(name[2])&&password.equals(stuID[2])||username.equals("123")){
       //若勾选记住密码
@@ -76,10 +70,11 @@ public class UserServlet extends BaseServlet {
           response.addCookie(CookiePassword);
         }
       }
-      super.doPost(request, response);
+
+      response.sendRedirect(request.getContextPath() + "/goods/list");
+      // super.doPost(request, response);
     }else{
       response.sendRedirect("/ep/page/LoginFail.jsp");
     }
   }
-
 }
