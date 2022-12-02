@@ -61,6 +61,7 @@
     .btn:hover{
         cursor: pointer;
     }
+
 </style>
 
 <body>
@@ -87,5 +88,6 @@
         </div>
     </c:forEach>
 </div>
+
 </body>
 </html>

@@ -25,9 +25,15 @@ public class UserServlet extends BaseServlet {
     String remember = request.getParameter("remember");
 
     //若用户名和密码正确，则进行后面操作
-    if (queryUser!=null) {
+    if (queryUser != null) {
       //若勾选记住密码
       System.out.println("登录成功");
+      Cookie CookieId = new Cookie("CookieId", queryUser.getId() + "");
+      CookieId.setMaxAge(60 * 60 * 24 * 7);
+      CookieId.setPath("/");
+      response.addCookie(CookieId);
+
+      System.out.println(queryUser.getId()+"id");
       //获取会话对象
       HttpSession session = request.getSession(true);
       session.setAttribute("username", queryUser.getUsername());
@@ -54,8 +60,9 @@ public class UserServlet extends BaseServlet {
           System.out.println("创建cookie");
           Cookie CookieName = new Cookie("CookieName", URLEncoder.encode(queryUser.getUsername(), "UTF-8"));//对cookie里存的汉字进行编码
           Cookie CookiePassword = new Cookie("CookiePassword", queryUser.getPassword());
-          CookieName.setMaxAge(60 * 60 * 24 * 30);
-          CookiePassword.setMaxAge(60 * 60 * 24 * 30);
+
+          CookieName.setMaxAge(60 * 60 * 24 * 7);
+          CookiePassword.setMaxAge(60 * 60 * 24 * 7);
           CookieName.setPath("/");
           CookiePassword.setPath("/");
           response.addCookie(CookieName);//回写cookie到浏览器

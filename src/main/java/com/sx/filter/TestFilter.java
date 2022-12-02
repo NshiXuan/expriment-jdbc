@@ -14,8 +14,6 @@ public class TestFilter implements Filter {
     HttpServletRequest request0 = (HttpServletRequest) request;
     HttpServletResponse response0 = (HttpServletResponse) response;
     HttpSession session = request0.getSession(true);
-
-    System.out.println(session.getAttribute("username"));
     request.setCharacterEncoding("Utf-8");
     response.setCharacterEncoding("Utf-8");
     response.setContentType("text/html;charset=Utf-8");

@@ -7,30 +7,48 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<% request.setAttribute("ctx",request.getContextPath()); %>
+<% request.setAttribute("ctx", request.getContextPath()); %>
+
+<%!
+    String user_id;
+    String good_id;
+%>
+
+<%
+    Cookie[] cookies = request.getCookies();
+    if (cookies != null) {
+        System.out.println(cookies);
+        for (int i = 0; i < cookies.length; i++) {
+            if (cookies[i].getName().equals("CookieId")) {
+                user_id = cookies[i].getValue();
+                System.out.println(user_id + "id");
+            }
+        }
+    }
+%>
 <html>
 <head>
     <title>Title</title>
 </head>
 <style>
-    body{
+    body {
         width: 1200px;
         margin: 0 auto;
     }
 
-    .nav-bar{
+    .nav-bar {
         padding: 20px;
         display: flex;
         justify-content: space-between;
         align-items: center;
     }
 
-    .nav-bar a{
+    .nav-bar a {
         text-decoration: none;
         margin-right: 10px;
     }
 
-    .good{
+    .good {
         display: flex;
         flex-wrap: wrap;
         gap: 20px;
@@ -45,12 +63,12 @@
         padding: 10px;
     }
 
-    .good-item  .img img {
+    .good-item .img img {
         width: 150px;
         height: 150px;
     }
 
-    .btn{
+    .btn {
         background: blue;
         padding: 10px 0;
         border: none;
@@ -58,7 +76,7 @@
         color: #fff;
     }
 
-    .btn:hover{
+    .btn:hover {
         cursor: pointer;
     }
 </style>
@@ -66,11 +84,11 @@
 <body>
 
 <div class="nav-bar">
-   <div>
-       <a href="${ctx}/goods/list">商品</a>
-       <a href="${ctx}/favors/list">购物车</a>
-       <a href="${ctx}/chats/list">聊天记录</a>
-   </div>
+    <div>
+        <a href="${ctx}/goods/list">商品</a>
+        <a href="${ctx}/favors/list">购物车</a>
+        <a href="${ctx}/chats/list">聊天记录</a>
+    </div>
     <div>
         <a href="${ctx}/user/logout">退出登录</a>
     </div>
@@ -84,7 +102,11 @@
             </div>
             <div class="price">￥${good.goodPrice}</div>
             <div class="name"> ${good.goodName}</div>
-            <button class="btn">加入购物车</button>
+            <form action="">
+                <input type="hidden" placeholder="id" name="good_id" value="<%=good_id %>"/>
+                <input type="hidden" placeholder="id" name="user_id" value="<%=user_id %>"/>
+                <button class="btn">加入购物车</button>
+            </form>
         </div>
     </c:forEach>
 </div>

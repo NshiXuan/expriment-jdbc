@@ -5,6 +5,7 @@ import com.sx.bean.Good;
 import com.sx.dao.FavorsDao;
 
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
@@ -12,9 +13,20 @@ import java.util.List;
 @WebServlet("/favors/*")
 public class FavorServlet extends BaseServlet {
     private FavorsDao dao = new FavorsDao();
+    private String user_id;
+
 
     public void list(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        List<Good> goods = dao.list();
+        Cookie[] cookies=request.getCookies();
+        if(cookies!=null){
+            for(int i=0;i< cookies.length;i++){
+                if(cookies[i].getName().equals("CookieId")){
+                    user_id=cookies[i].getValue();
+                }
+            }
+        }
+
+        List<Good> goods = dao.list(user_id);
         request.setAttribute("favors", goods);
         request.getRequestDispatcher("/page/favors.jsp").forward(request, response);
     }
