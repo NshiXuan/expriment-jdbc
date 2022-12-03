@@ -37,7 +37,7 @@ public class FavorServlet extends BaseServlet {
         favor.setUserId(request.getParameter("user_id"));
 
         dao.addGood(favor);
-        request.getRequestDispatcher("/page/favors.jsp").forward(request, response);
+        response.sendRedirect("/ep/goods/list");
     }
     public void delete(HttpServletRequest request, HttpServletResponse response) throws Exception {
         Favor favor = new Favor();
@@ -45,6 +45,6 @@ public class FavorServlet extends BaseServlet {
         favor.setUserId(request.getParameter("user_id"));
 
         dao.deleteGood(favor);
-        request.getRequestDispatcher("/page/favors.jsp").forward(request, response);
+        response.sendRedirect("/ep/favors/list");
     }
 }

@@ -77,4 +77,8 @@ public class UserServlet extends BaseServlet {
       response.sendRedirect("/ep/page/LoginFail.jsp");
     }
   }
+
+  public void logout(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    response.sendRedirect("/ep");
+  }
 }

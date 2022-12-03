@@ -68,9 +68,16 @@
         height: 150px;
     }
 
+    form{
+        display: flex;
+        justify-content: center;
+        margin: 0;
+    }
+
     .btn {
         background: blue;
-        padding: 10px 0;
+        width: 100%;
+        padding: 10px;
         border: none;
         border-radius: 5px;
         color: #fff;
@@ -102,8 +109,8 @@
             </div>
             <div class="price">￥${good.goodPrice}</div>
             <div class="name"> ${good.goodName}</div>
-            <form action="">
-                <input type="hidden" placeholder="id" name="good_id" value="<%=good_id %>"/>
+            <form action="/ep/favors/add">
+                <input type="hidden" placeholder="id" name="good_id" value="${good.id}"/>
                 <input type="hidden" placeholder="id" name="user_id" value="<%=user_id %>"/>
                 <button class="btn">加入购物车</button>
             </form>

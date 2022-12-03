@@ -8,6 +8,24 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <% request.setAttribute("ctx",request.getContextPath()); %>
+
+<%!
+    String user_id;
+%>
+
+<%
+    Cookie[] cookies = request.getCookies();
+    if (cookies != null) {
+        System.out.println(cookies);
+        for (int i = 0; i < cookies.length; i++) {
+            if (cookies[i].getName().equals("CookieId")) {
+                user_id = cookies[i].getValue();
+                System.out.println(user_id + "id");
+            }
+        }
+    }
+%>
+
 <html>
 <head>
     <title>Title</title>
@@ -50,9 +68,16 @@
         height: 150px;
     }
 
-    .btn{
+    form{
+        display: flex;
+        justify-content: center;
+        margin: 0;
+    }
+
+    .btn {
         background: red;
-        padding: 10px 0;
+        width: 100%;
+        padding: 10px;
         border: none;
         border-radius: 5px;
         color: #fff;
@@ -84,7 +109,11 @@
             </div>
             <div class="price">￥${favor.goodPrice}</div>
             <div class="name"> ${favor.goodName}</div>
-            <button class="btn">删除</button>
+            <form action="/ep/favors/delete">
+                <input type="hidden" placeholder="id" name="good_id" value="${favor.id}"/>
+                <input type="hidden" placeholder="id" name="user_id" value="<%=user_id %>"/>
+                <button class="btn">删除</button>
+            </form>
         </div>
     </c:forEach>
 </div>

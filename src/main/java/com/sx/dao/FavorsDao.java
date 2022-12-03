@@ -9,7 +9,7 @@ import java.util.List;
 
 public class FavorsDao extends BaseDao {
     public List<Good> list(String user_id) {
-        String sql = "SELECT g.good_name,g.good_price,g.good_img FROM favor JOIN goods g on g.id = favor.good_id WHERE user_id= ?";
+        String sql = "SELECT g.id,g.good_name,g.good_price,g.good_img FROM favor JOIN goods g on g.id = favor.good_id WHERE user_id= ?";
         return tpl.query(sql, new BeanPropertyRowMapper<>(Good.class),user_id);
     }
 
