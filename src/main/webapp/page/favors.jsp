@@ -87,6 +87,19 @@
         cursor: pointer;
     }
 
+    .total-price{
+        position: fixed;
+        padding: 20px;
+        width: 50vh;
+        bottom: 20px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        border-radius: 5px;
+    }
+
+    .total-price .t-price{
+        color: red;
+        font-size: 20px;
+    }
 </style>
 
 <body>
@@ -116,6 +129,11 @@
             </form>
         </div>
     </c:forEach>
+
+    <div class="total-price">
+        <span>结算: </span>
+        <span class="t-price">${totalPrice}元</span>
+    </div>
 </div>
 
 </body>

@@ -12,39 +12,47 @@ import java.util.List;
 
 @WebServlet("/favors/*")
 public class FavorServlet extends BaseServlet {
-    private FavorsDao dao = new FavorsDao();
-    private String user_id;
+  private FavorsDao dao = new FavorsDao();
+  private String user_id;
 
 
-    public void list(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        Cookie[] cookies=request.getCookies();
-        if(cookies!=null){
-            for(int i=0;i< cookies.length;i++){
-                if(cookies[i].getName().equals("CookieId")){
-                    user_id=cookies[i].getValue();
-                }
-            }
+  public void list(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    Cookie[] cookies = request.getCookies();
+    if (cookies != null) {
+      for (int i = 0; i < cookies.length; i++) {
+        if (cookies[i].getName().equals("CookieId")) {
+          user_id = cookies[i].getValue();
         }
-
-        List<Good> goods = dao.list(user_id);
-        request.setAttribute("favors", goods);
-        request.getRequestDispatcher("/page/favors.jsp").forward(request, response);
+      }
     }
 
-    public void add(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        Favor favor = new Favor();
-        favor.setGoodId(request.getParameter("good_id"));
-        favor.setUserId(request.getParameter("user_id"));
-
-        dao.addGood(favor);
-        response.sendRedirect("/ep/goods/list");
+    Integer totalPrice = 0;
+    List<Good> goods = dao.list(user_id);
+    for (Good good : goods) {
+      System.out.println(good);
+      totalPrice = totalPrice + Integer.parseInt(good.getGoodPrice());
     }
-    public void delete(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        Favor favor = new Favor();
-        favor.setGoodId(request.getParameter("good_id"));
-        favor.setUserId(request.getParameter("user_id"));
+    System.out.println(totalPrice);
+    request.setAttribute("favors", goods);
+    request.setAttribute("totalPrice", totalPrice);
+    request.getRequestDispatcher("/page/favors.jsp").forward(request, response);
+  }
 
-        dao.deleteGood(favor);
-        response.sendRedirect("/ep/favors/list");
-    }
+  public void add(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    Favor favor = new Favor();
+    favor.setGoodId(request.getParameter("good_id"));
+    favor.setUserId(request.getParameter("user_id"));
+
+    dao.addGood(favor);
+    response.sendRedirect("/ep/goods/list");
+  }
+
+  public void delete(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    Favor favor = new Favor();
+    favor.setGoodId(request.getParameter("good_id"));
+    favor.setUserId(request.getParameter("user_id"));
+
+    dao.deleteGood(favor);
+    response.sendRedirect("/ep/favors/list");
+  }
 }
